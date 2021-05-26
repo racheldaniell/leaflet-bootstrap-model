@@ -99,9 +99,10 @@
 
       $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
         L.geoJson(data,{color: "purple", weight: 8}).addTo(map);
+      });
 
       $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
-        L.geoJson(data,{color: "blue", weight: 4}).addTo(map);
+        L.geoJson(data,{color: "blue"}).addTo(map);
 
       });
 
