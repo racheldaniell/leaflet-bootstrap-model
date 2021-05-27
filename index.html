@@ -17,8 +17,13 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+    <!-- mapbox only needed if using mapbox basemap -->
+    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+
     <!-- this <link> tag lets your page call up Google font families-->
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Cinzel|" rel="stylesheet">
+
 
     <title>Map Project</title>
 
@@ -108,13 +113,22 @@
 
 
     <script>
-        // Create variable to hold map element, give initial settings to map
+        // create variable to hold map element, give initial settings to map
         var map = L.map('map',{ center: [-23.6832,-46.5957], zoom: 10});
 
-        // Add OpenStreetMap tile layer to map element
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+        // add map tiles layer to map element
 
-            // added this variable to set point data style as circle-marker
+        L.mapbox.accessToken = 'pk.eyJ1IjoicmRhbmllbGwiLCJhIjoiY2ttcGZsdTl4MDM1djJ3bm5iZXU2dnhwOCJ9.WdM8qnEwVWfISjL4DZ54Mg';
+            
+        var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
+               attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+               tileSize: 512,
+               zoomOffset: -1
+        });
+
+        map.addLayer(mapboxTiles);
+
+      // added this variable to set point data style as circle-marker
       var geojsonMarkerOptions = {
           radius: 8,
           fillColor: "#00ccff",
@@ -125,7 +139,7 @@
       };
 
       $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
-        L.geoJson(data,{color:"#DDAD7F", weight:5, opacity: 0.7}).addTo(map);
+        L.geoJson(data,{color:"#DDAD7F", weight:5, opacity: 0.9}).addTo(map);
       });
 
       $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
