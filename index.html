@@ -97,12 +97,29 @@
         // Add OpenStreetMap tile layer to map element
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
 
+            // added this variable to set point data style as circle-marker
+      var geojsonMarkerOptions = {
+          radius: 8,
+          fillColor: "#00ccff",
+          color: "#006680",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8
+      };
+
       $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
         L.geoJson(data,{color: "purple", weight: 8}).addTo(map);
       });
 
       $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
-        L.geoJson(data,{color: "blue"}).addTo(map);
+        L.geoJson(data, {
+          pointToLayer: function (feature, latlng) {
+              return L.circleMarker(latlng, geojsonMarkerOptions);
+          },
+          onEachFeature: function (feature, layer) {
+              layer.bindPopup(feature.properties.name);
+          }
+      }).addTo(map);
 
       });
 
