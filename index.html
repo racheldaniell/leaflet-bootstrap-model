@@ -11,12 +11,13 @@
 
     <!-- here we call in our jquery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  
 
     <!-- here we call in our leaflet library and css -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+    <!-- this <link> tag lets your page call up Google font families-->
+    <link href="https://fonts.googleapis.com/css?family=Lora|Noto+Sans|New+Tegomin|Tangerine|Inconsolata|Roboto|Teko|Comfortaa|Oxygen|Domine|Cinzel|Knewave|Creepster|Share|Rye|Langar|Chonburi|Corben|Gugi|Mirza|Pompiere|Baumans|Codystar|Kufam|Lemon|" rel="stylesheet">
 
     <title>Map Project</title>
   </head>
@@ -32,6 +33,11 @@
       position: relative;
       width: 100%;
       height: 100%;
+    }
+
+    #pgtitle {
+      font-size: 2em;
+      font-family: 'Lemon', sans-serif;
     }
 
     .container, .container-fluid {
@@ -50,6 +56,11 @@
       border: black solid 1px;
       background-color: rgb(255, 255, 255);
       color: rgb(255, 255, 255);   
+    }
+
+    .notes {
+      font-size: 0.5em;
+      font-family: 'Kufam', sans-serif;
     }
 
   </style>
@@ -79,9 +90,10 @@
     <div class="container">
       <div class="row">
         <div class="col-3">
-          <img width=100% src="img/zoom-tools_breakout-rooms.jpg"/>
+          <img width=100% src="img/pizzzacat.jpg"/>
         </div>
-        <div class="col-9">
+
+        <div class="col-9" class="notes">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
