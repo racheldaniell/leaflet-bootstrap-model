@@ -67,8 +67,13 @@
       color: rgb(255, 255, 255);   
     }
 
-    .notes {
-      font-size: 50%;
+    .major {
+      font-size: 1.2em;
+      font-family: 'Oxygen', sans-serif;
+    }
+
+    .minor {
+      font-size: 0em;
       font-family: 'Oxygen', sans-serif;
     }
 
@@ -87,7 +92,7 @@
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-3" class="major">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -102,7 +107,7 @@
           <img width=100% src="img/chart.png"/>
         </div>
 
-        <div class="col-8" class="notes">
+        <div class="col-8" class="minor">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -117,13 +122,14 @@
         var map = L.map('map',{ center: [-23.6832,-46.5957], zoom: 10});
 
         // add map tiles layer to map element
+        // if mapbox replace with your access token
 
         L.mapbox.accessToken = 'pk.eyJ1IjoicmRhbmllbGwiLCJhIjoiY2ttcGZsdTl4MDM1djJ3bm5iZXU2dnhwOCJ9.WdM8qnEwVWfISjL4DZ54Mg';
-            
+        
+        // this is a standard style replace with desired style    
         var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
                attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-               tileSize: 512,
-               zoomOffset: -1
+               tileSize: 512
         });
 
         map.addLayer(mapboxTiles);
@@ -153,6 +159,22 @@
       }).addTo(map);
 
       });
+
+      // define basemap and thematic layers and add layer switcher control
+        var basemap = {
+          "mapbase": mapboxTiles
+        };
+
+        var overlays = {
+          "Transit Lines": transit_sao_paulo_lines
+          "Transit Stops": transit_sao_paulo_stops
+         };
+
+        L.control.layers(basemap,overlays).addTo(map);
+
+
+
+     // }
 
     </script>
   </body>
