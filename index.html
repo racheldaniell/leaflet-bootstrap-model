@@ -67,10 +67,6 @@
       color: rgb(255, 255, 255);   
     }
 
-    .minor {
-      font-size: 1em;
-      font-family: 'Oxygen', sans-serif;
-    }
 
 
   </style>
@@ -78,7 +74,7 @@
   <body>
 
     <div class="container">
-    <nav class="navbar navbar-expand-md fixed-top navbar-light" style="background-color: #764444;">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #c27d5d;">
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -124,7 +120,7 @@
           <img width=100% src="img/chart.png"/>
         </div>
 
-        <div class="col-8" class="minor">
+        <div class="col-8">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -176,16 +172,6 @@
 
       });
 
-      /* Control panel to display map layers */
-
-     // L.control.layers(baseLayers, overlays).addTo(map);
-      /* Control panel to display map layers */
-      L.control.layers( null, null, {
-        position: "topright",
-        collapsed: false,
-        atoZIndex: true,
-        hideSingleBase: true
-      }).addTo(map);
 
     </script>
   </main>
