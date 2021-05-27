@@ -145,9 +145,8 @@
       };
 
       var lines = $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
-        L.geoJson(data,{color:"#00008b", weight:5, opacity: 0.8})
+        L.geoJson(data,{color:"#00008b", weight:5, opacity: 0.8}).addTo(map);
       });
-      lines.addTo(map);
 
       var stops = $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
         L.geoJson(data, {
@@ -156,27 +155,15 @@
           },
           onEachFeature: function (feature, layer) {
               layer.bindPopup(feature.properties.name);
-          }
-      })
-      stops.addTo(map);
+            }
+          }).addTo(map);
+        });
 
-      });
+      var controlLayers = L.control.layers(lines,stops,{
+        position: "topright",
+        collapsed: false
+      }).addTo(map);
 
-      // define basemap and thematic layers and add layer switcher control
-        var basemap = {
-          "mapbase": mapboxTiles
-        };
-
-        var overlays = {
-          "Transit Lines": lines
-          "Transit Stops": stops
-         };
-
-        L.control.layers(basemap,overlays).addTo(map);
-
-
-
-     //}
 
     </script>
   </body>
