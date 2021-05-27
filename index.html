@@ -67,13 +67,8 @@
       color: rgb(255, 255, 255);   
     }
 
-    .major {
-      font-size: 2em;
-      font-family: 'Oxygen', sans-serif;
-    }
-
-    .minor {
-      font-size: 0.2em;
+    .notes {
+      font-size: 50%;
       font-family: 'Oxygen', sans-serif;
     }
 
@@ -92,7 +87,7 @@
           </div>
         </div>
 
-        <div class="col-3" class="major">
+        <div class="col-3">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -107,7 +102,7 @@
           <img width=100% src="img/chart.png"/>
         </div>
 
-        <div class="col-8" class="minor">
+        <div class="col-8" class="notes">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -119,17 +114,16 @@
 
     <script>
         // create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [-46.5957,-23.6832], zoom: 9});
+        var map = L.map('map',{ center: [-23.6832,-46.5957], zoom: 10});
 
         // add map tiles layer to map element
-        // if mapbox replace with your access token
 
         L.mapbox.accessToken = 'pk.eyJ1IjoicmRhbmllbGwiLCJhIjoiY2ttcGZsdTl4MDM1djJ3bm5iZXU2dnhwOCJ9.WdM8qnEwVWfISjL4DZ54Mg';
-        
-        // this is a standard style replace with desired style    
+            
         var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
                attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-               tileSize: 512
+               tileSize: 512,
+               zoomOffset: -1
         });
 
         map.addLayer(mapboxTiles);
@@ -140,30 +134,25 @@
           fillColor: "#00ccff",
           color: "#006680",
           weight: 1,
-          opacity: 0.2,
-          fillOpacity: 0.7
+          opacity: 0.1,
+          fillOpacity: 0.6
       };
 
-      var lines = $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
-        L.geoJson(data,{color:"#00008b", weight:4, opacity: 0.6}).addTo(map);
+      $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
+        L.geoJson(data,{color:"#00008b", weight:5, opacity: 0.8}).addTo(map);
       });
 
-      var stops = $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
+      $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
               return L.circleMarker(latlng, geojsonMarkerOptions);
           },
           onEachFeature: function (feature, layer) {
               layer.bindPopup(feature.properties.name);
-            }
-          }).addTo(map);
-        });
-
-      /* Control panel to display map layers */
-      var controlLayers = L.control.layers(lines,stops,{
-        position: "topright",
-        collapsed: false
+          }
       }).addTo(map);
+
+      });
 
     </script>
   </body>
