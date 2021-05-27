@@ -1,4 +1,4 @@
-# leaflet-bootstrap-test3
+# leaflet-bootstrap-model
 
 at
-https://racheldaniell.github.io/leaflet-bootstrap-test3
+https://racheldaniell.github.io/leaflet-bootstrap-model
