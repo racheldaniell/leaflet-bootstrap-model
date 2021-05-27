@@ -68,7 +68,7 @@
     }
 
     .major {
-      font-size: 1.6em;
+      font-size: 2em;
       font-family: 'Oxygen', sans-serif;
     }
 
@@ -119,7 +119,7 @@
 
     <script>
         // create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [-46.5957,-23.6832], zoom: 10});
+        var map = L.map('map',{ center: [-23.6832,-46.5957], zoom: 10});
 
         // add map tiles layer to map element
         // if mapbox replace with your access token
@@ -158,6 +158,12 @@
             }
           }).addTo(map);
         });
+
+      /* Control panel to display map layers */
+      var controlLayers = L.control.layers(lines,stops, {
+        position: "topright",
+        collapsed: false
+      }).addTo(map);
 
     </script>
   </body>
