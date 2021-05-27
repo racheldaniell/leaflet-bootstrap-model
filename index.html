@@ -63,7 +63,7 @@
     }
 
     .notes {
-      font-size: 70%;
+      font-size: 50%;
       font-family: 'Oxygen', sans-serif;
     }
 
@@ -94,7 +94,7 @@
     <div class="container">
       <div class="row">
         <div class="col-3">
-          <img width=75% src="img/pizzacat.jpg"/>
+          <img width=100% src="img/chart.png"/>
         </div>
 
         <div class="col-9" class="notes">
@@ -120,12 +120,12 @@
           fillColor: "#00ccff",
           color: "#006680",
           weight: 1,
-          opacity: 1,
-          fillOpacity: 0.8
+          opacity: 0.2,
+          fillOpacity: 0.7
       };
 
       $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
-        L.geoJson(data,{color: "purple", weight: 8}).addTo(map);
+        L.geoJson(data,{color:"#DDAD7F", weight:5, opacity: 0.7}).addTo(map);
       });
 
       $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
